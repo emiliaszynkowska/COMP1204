@@ -1,11 +1,22 @@
 package sjdb;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
+
+/**
+ * Estimates the cost of an operator
+ * @author Emilia Szynkowska
+ * @author eas1g18@soton.ac.uk
+ */
 
 public class Estimator implements PlanVisitor {
 
+	/**
+	 * Estimates the cost of a scan operator:
+	 * Creates an output relation using the tuple count of the input relation
+	 * Iterates through the attributes in the input relation
+	 * Adds attributes to the output relation
+	 * @param op Scan operator to be visited
+	 */
 	// Scan = T(R)
 	public void visit(Scan op) {
 		Relation in = op.getRelation();
@@ -20,6 +31,13 @@ public class Estimator implements PlanVisitor {
 		op.setOutput(out);
 	}
 
+	/**
+	 * Estimates the cost of a project operator:
+	 * Creates an output relation using the tuple count of the input relation
+	 * Iterates through attributes in the operator
+	 * Adds matching attributes and value counts from the operator and input relation
+	 * @param op Project operator to be visited
+	 */
 	public void visit(Project op) {
 		// Find the input
 		Relation in = op.getInput().getOutput();
@@ -39,6 +57,22 @@ public class Estimator implements PlanVisitor {
 		op.setOutput(out);
 	}
 
+	/**
+	 * Estimates the cost of a select operator:
+	 * Finds the left and right attributes in the predicate
+	 * If the predicate is of the form attr=val
+	 	* Creates an output relation using T(R)/V(R,A)
+	 	* Where T(R) is the tuple count of the input relation
+	 	* Where V(R,A) is the number of distinct values for the attribute A in relation R
+	 	* Adds attributes and value counts
+	 * If the predicate is of the form attr=attr
+	 	* Creates an output relation using T(R)/max(V(R,A),V(R,B))
+	 	* Where T(R) is the tuple count of the input relation
+	 	* Where V(R,A) is the number of distinct values for the attribute A in relation R
+	 	* Where V(R,B) is the number of distinct values for the attribute B in relation R
+	 	* Adds attributes and value counts using min(V(R,A),V(R,B)
+	 * @param op Select operator to be visited
+	 */
 	public void visit(Select op) {
 		// Find the input
 		Relation in = op.getInput().getOutput();
@@ -98,6 +132,13 @@ public class Estimator implements PlanVisitor {
 		op.setOutput(out);
 	}
 
+	/**
+	 * Estimates the cost of a product operator
+	 * Finds the left and right relations
+	 * Creates an output relation using the tuple counts of the left and right relations
+	 * Adds attributes and tuple counts from the left and right relations
+	 * @param op Product operator to be visited
+	 */
 	public void visit(Product op) {
 		// Find the left and right outputs
 		Relation left = op.getLeft().getOutput();
@@ -121,6 +162,18 @@ public class Estimator implements PlanVisitor {
 		op.setOutput(out);
 	}
 
+	/**
+	 * Estimates the cost of a join operator
+	 * Finds the left and right relations
+	 * Finds attributes in the predicates
+	 * Creates an output relation using T(R)*T(S)/max(V(R,A),V(S,B))
+	 	* Where T(R) is the tuple count of the left relation
+	 	* Where T(S) is the tuple count of the right relation
+	 	* Where V(R,A) is the number of distinct values for the attribute A in relation R
+	 	* Where V(S,B) is the number of distinct values for the attribute B in relation S
+	 * Adds attributes and value counts using min(V(R,A),V(S,B))
+	 * @param op
+	 */
 	public void visit(Join op) {
 		// Find the left and right outputs
 		Relation left = op.getLeft().getOutput();

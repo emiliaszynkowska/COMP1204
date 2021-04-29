@@ -34,6 +34,9 @@ public class Test {
 		cat.createAttribute("B", "b1", 150);
 		cat.createAttribute("B", "b2", 100);
 		cat.createAttribute("B", "b3", 5);
+		cat.createRelation("C", 200);
+		cat.createAttribute("C", "c1", 50);
+		cat.createAttribute("C", "c2", 25);
 		
 		return cat;
 	}
@@ -41,18 +44,19 @@ public class Test {
 	public static Operator query(Catalogue cat) throws Exception {
 		Scan a = new Scan(cat.getRelation("A"));
 		Scan b = new Scan(cat.getRelation("B"));
+		Scan c = new Scan(cat.getRelation("C"));
 
 		// Query 1
-		Product p1 = new Product(a, b);
-		Select s1 = new Select(p1, new Predicate(new Attribute("a1"), new Attribute("b1")));
-		Select s2 = new Select(s1, new Predicate(new Attribute("a2"), new Attribute("b3")));
-		Select s3 = new Select(s2, new Predicate(new Attribute("a2"), "value"));
+		Product p1 = new Product(b, c);
+		Product p2 = new Product(a, p1);
+		Select s1 = new Select(p2, new Predicate(new Attribute("a1"), "value"));
+		Select s2 = new Select(s1, new Predicate(new Attribute("a2"), new Attribute("b2")));
 
 		ArrayList<Attribute> atts = new ArrayList<>();
 		atts.add(new Attribute("a1"));
-		atts.add(new Attribute("a2"));
+		atts.add(new Attribute("b1"));
 
-		Project plan = new Project(s3, atts);
+		Project plan = new Project(s2, atts);
 
 		return plan;
 	}

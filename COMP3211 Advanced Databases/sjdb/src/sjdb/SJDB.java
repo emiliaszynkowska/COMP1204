@@ -31,8 +31,6 @@ public class SJDB {
 		// create optimised plan
 		Optimiser opt = new Optimiser(cat);
 		Operator optPlan = opt.optimise(plan);
-		System.out.println("OLD: " + plan.toString());
-		System.out.println("NEW: " + optPlan.toString());
 	}
 
 }
