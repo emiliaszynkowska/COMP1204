@@ -1,0 +1,91 @@
+commit 334b2b7da7d5645d963cccc5204fc00481442db9
+Author: eas1g18 <eas1g18@soton.ac.uk>
+Date:   Tue Feb 26 10:41:24 2019 +0000
+
+    Sorting the averages
+
+commit 4b0f0ab05d0744fce6d96bcd577031410d64b1c6
+Author: eas1g18 <eas1g18@soton.ac.uk>
+Date:   Tue Feb 26 10:35:53 2019 +0000
+
+    Rounding to 2 decimal places
+
+commit 3f668feee2e066c1d0e956dbb1c3f69a1bf843ad
+Author: eas1g18 <eas1g18@soton.ac.uk>
+Date:   Tue Feb 26 10:34:14 2019 +0000
+
+    Finding the average for all review values
+
+commit be70ce891bc1ab6d140b6092271c874efc353200
+Author: eas1g18 <eas1g18@soton.ac.uk>
+Date:   Tue Feb 26 10:29:21 2019 +0000
+
+    Making the sort method more efficient using pipelining
+
+commit 002f5f5724a4ac3baf81c876c25d4ba53d701c7b
+Author: eas1g18 <eas1g18@soton.ac.uk>
+Date:   Mon Feb 25 21:26:52 2019 +0000
+
+    Experimenting with grep and sed
+
+commit 16d77246fab066615f7b8f395b3b022d9aa84cfb
+Author: eas1g18 <eas1g18@soton.ac.uk>
+Date:   Mon Feb 25 21:01:37 2019 +0000
+
+    Revert "Update averagereviews.sh"
+    
+    This reverts commit d50ef6b1c62667d1ea9c077447744f7bd9a2e206
+
+commit d50ef6b1c62667d1ea9c077447744f7bd9a2e206
+Author: eas1g18 <eas1g18@soton.ac.uk>
+Date:   Mon Feb 25 20:57:21 2019 +0000
+
+    Update averagereviews.sh
+
+commit 50195f69f1f4a9e08dbd636992ba8ebe734d95cc
+Author: eas1g18 <eas1g18@soton.ac.uk>
+Date:   Mon Feb 25 15:58:34 2019 +0000
+
+    Sorting the hotels in terms of review number
+
+commit f7ef0f9cb455d23acd12e2a8f00336de375b38ed
+Author: eas1g18 <eas1g18@soton.ac.uk>
+Date:   Mon Feb 25 14:24:01 2019 +0000
+
+    Putting the results into a file
+
+commit 99132168bd3189aa4bc50e160d27ae429fd98395
+Author: eas1g18 <eas1g18@soton.ac.uk>
+Date:   Mon Feb 25 14:09:24 2019 +0000
+
+    Putting the filename and review count into variables
+
+commit b489efca228feaed9c72934e6c667fd91b2ce723
+Author: eas1g18 <eas1g18@soton.ac.uk>
+Date:   Mon Feb 25 14:04:24 2019 +0000
+
+    Iterate through all the hotel files in reviews
+
+commit d13ca1c061d0f2c8f83510b9af12b23f44fecfe7
+Author: eas1g18 <eas1g18@soton.ac.uk>
+Date:   Mon Feb 25 00:23:41 2019 +0000
+
+    Printing the filename and number of reviews for one hotel
+
+commit 8eda0d92b958af286dee6d1fbadb1a792ffd411d
+Author: eas1g18 <eas1g18@soton.ac.uk>
+Date:   Mon Feb 25 00:17:57 2019 +0000
+
+    Experimenting with the grep command on one hotel file
+
+commit 7e77f924f2aaa356ec9eb5d7d96e76f2f242dd7d
+Author: eas1g18 <eas1g18@soton.ac.uk>
+Date:   Sun Feb 24 22:28:30 2019 +0000
+
+    Created averagereviews.sh
+
+commit 7befad8028849ba9126ab3ad4135991fc1c6ab50
+Author: eas1g18 <eas1g18@soton.ac.uk>
+Date:   Sun Feb 24 22:27:09 2019 +0000
+
+    Created countreviews.sh
