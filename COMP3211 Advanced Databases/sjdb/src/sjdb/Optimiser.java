@@ -112,15 +112,16 @@ public class Optimiser {
 
         // Find all attributes in the plan operator
         attributes.retainAll(plan.getOutput().getAttributes());
+        return plan;
 
         // Create a project operator
-        if (!attributes.isEmpty()) {
-            Project project = new Project(plan, attributes);
-            project.accept(estimator);
-            return project;
-        }
-        else
-            return plan;
+//        if (!attributes.isEmpty()) {
+//            Project project = new Project(plan, attributes);
+//            project.accept(estimator);
+//            return project;
+//        }
+//        else
+//            return plan;
     }
 
     /**

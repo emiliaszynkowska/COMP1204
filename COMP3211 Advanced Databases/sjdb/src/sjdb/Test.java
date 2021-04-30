@@ -27,36 +27,42 @@ public class Test {
 	
 	public static Catalogue createCatalogue() {
 		Catalogue cat = new Catalogue();
-		cat.createRelation("A", 100);
-		cat.createAttribute("A", "a1", 100);
-		cat.createAttribute("A", "a2", 15);
-		cat.createRelation("B", 150);
-		cat.createAttribute("B", "b1", 150);
-		cat.createAttribute("B", "b2", 100);
-		cat.createAttribute("B", "b3", 5);
-		cat.createRelation("C", 200);
-		cat.createAttribute("C", "c1", 50);
-		cat.createAttribute("C", "c2", 25);
+		cat.createRelation("Person", 400);
+		cat.createAttribute("Person", "persid", 350);
+		cat.createAttribute("Person", "persname", 47);
+		cat.createAttribute("Person", "age", 47);
+		cat.createRelation("Project", 40);
+		cat.createAttribute("Project", "projid", 40);
+		cat.createAttribute("Project", "projname", 35);
+		cat.createAttribute("Project", "dept", 5);
+		cat.createRelation("Department", 5);
+		cat.createAttribute("Department", "deptid", 5);
+		cat.createAttribute("Department", "deptname", 5);
+		cat.createAttribute("Department", "manager", 5);
 		
 		return cat;
 	}
 
 	public static Operator query(Catalogue cat) throws Exception {
-		Scan a = new Scan(cat.getRelation("A"));
-		Scan b = new Scan(cat.getRelation("B"));
-		Scan c = new Scan(cat.getRelation("C"));
+		Scan person = new Scan(cat.getRelation("Person"));
+		Scan department = new Scan(cat.getRelation("Department"));
+		Scan project= new Scan(cat.getRelation("Project"));
 
 		// Query 1
-		Product p1 = new Product(b, c);
-		Product p2 = new Product(a, p1);
-		Select s1 = new Select(p2, new Predicate(new Attribute("a1"), "value"));
-		Select s2 = new Select(s1, new Predicate(new Attribute("a2"), new Attribute("b2")));
+		Select s1 = new Select(department, new Predicate(new Attribute("deptname"), "Research"));
 
-		ArrayList<Attribute> atts = new ArrayList<>();
-		atts.add(new Attribute("a1"));
-		atts.add(new Attribute("b1"));
+		ArrayList<Attribute> atts1 = new ArrayList<>();
+		atts1.add(new Attribute("projid"));
+		atts1.add(new Attribute("dept"));
 
-		Project plan = new Project(s2, atts);
+		Project p1 = new Project(project, atts1);
+
+		Join j1 = new Join(p1, s1, new Predicate(new Attribute("dept"), new Attribute("deptid")));
+
+		ArrayList<Attribute> atts2 = new ArrayList<>();
+		atts2.add(new Attribute("projid"));
+
+		Project plan = new Project(j1, atts2);
 
 		return plan;
 	}
